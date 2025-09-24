@@ -1,1 +1,13 @@
-abcd
+[[inputs.exec]]
+  name_override = "leaf_l3_routetable_monitor"
+  commands = ["python3 /etc/telegraf/scripts/lpm_py.py --username sandpitadmin --inventory '192.168.64.7' --password Tooling1 --device_type cisco_nxos"]
+  timeout = "1m"
+  interval = "10m"
+  data_format = "json"
+  tag_keys = ["host"]
+  json_string_fields = ["lpm"]
+ 
+[[processors.converter]]
+  namepass = ["leaf_l3_routetable_monitor"]
+  [processors.converter.fields]
+    integer = ["*"]
